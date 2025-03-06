@@ -1,0 +1,399 @@
+/* Variables */
+:root {
+    --spring-green: #7bc689;
+    --dark-gray: #333;
+    --white: #fff;
+    --background: #ebdde3;
+    --text-color: #222;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --background: #0e0625;
+    --text-color: #f9f9f9;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace, sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    /* Add the polka dot background */
+    background-image: radial-gradient(#7bc689 1.85px, transparent 1.85px), radial-gradient(#7bc689 1.85px, rgba(229, 229, 247, 0.6) 1.85px); /* Use rgba for opacity */
+    background-size: 74px 74px;
+    background-position: 0 0, 37px 37px;
+}
+
+/* Dark Mode Override for Background */
+body.dark-mode {
+    background-image: radial-gradient(#7bc689 1.85px, transparent 1.85px), radial-gradient(#7bc689 1.85px, rgba(14, 6, 37, 0.6) 1.85px); /* Use rgba for opacity */
+    background-color: var(--background); /* Set the dark mode background color */
+}
+
+/* Header */
+header {
+    background-color: var(--spring-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    background: var(--dark-gray);
+    color: var(--spring-green);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Banner/Slideshow */
+.banner {
+    width: 100%;
+    height: 350px; /* Adjust this height as needed */
+    overflow: hidden;
+    position: relative;
+    background-color: #7bc68972;
+}
+
+.slideshow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image covers the container without distortion */
+    object-position: center; /* Centers the image within the container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Start with all slides hidden */
+    transition: opacity 1s ease-in-out; /* Smooth fade transition */
+}
+
+.slide.active {
+    opacity: 1; /* Show the active slide */
+}
+
+/* Sections */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* About Me Section */
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the top */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add padding to prevent content from touching the edges */
+}
+
+.profile-content {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    /*border-radius: 50%; */
+    object-fit: cover; /* This makes sure the image fills the circle properly */
+    margin-bottom: 20px;
+    border: 5px solid #7bc689;
+}
+
+.gif-left, .gif-right {
+    flex: 0 0 20%; /* Adjust the width of the GIF containers */
+    margin-top: 50px; /* Adjust this value to align GIFs with the profile content */
+    position: relative;
+}
+
+/* Giphy Embed Wrapper */
+.gif-left iframe, .gif-right iframe {
+    width: 100%; /* Make the iframe fill its container */
+    height: 100%; /* Make the iframe fill its container */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    position: absolute; /* Ensure the iframe fills the container */
+    top: 0;
+    left: 0;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+    .gif-left, .gif-right {
+        flex: 0 0 150px; /* Reduce the width of the GIF containers for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .gif-left, .gif-right {
+        display: none; /* Hide GIFs on smaller screens */
+    }
+
+    .profile-content {
+        margin: 0; /* Remove side margins on smaller screens */
+    }
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between cards */
+    margin-top: 20px;
+    max-width: 1200px; /* Limit the width of the grid */
+    margin: 0 auto; /* Center the grid */
+    padding: 0 20px; /* Add padding for smaller screens */
+}
+
+/* Project Card */
+.project-card {
+    background: var(--spring-green);
+    color: var(--dark-gray);
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure the image stays within the card */
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: block;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+}
+
+/* Project Image */
+.project-image {
+    width: 100%;
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the area */
+    object-position: center; /* Center the image */
+}
+
+/* Project Info */
+.project-info {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Project Title */
+.project-title {
+    font-size: 1.5rem; /* Larger font for the title */
+    font-weight: bold;
+    color: var(--dark-gray);
+    text-decoration: none;
+    display: block; /* Make the title a block element */
+    margin-bottom: 10px; /* Space between title and description */
+}
+
+.project-title:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Project Description */
+.project-description {
+    font-size: 1rem; /* Smaller font for the description */
+    color: var(--dark-gray);
+    margin: 0; /* Remove default margin */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+
+    .project-image {
+        height: 150px; /* Smaller image height for mobile */
+    }
+}
+
+/* Project Overlay */
+.project-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.project-overlay:target {
+    display: flex;
+}
+
+.overlay-content {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.overlay-content h3 {
+    background: var(--spring-green);
+    color: var(--dark-gray);
+    padding: 10px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.close-btn {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--spring-green);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    text-decoration: underline;
+}
+
+/* Skills List */
+#skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+#skills li {
+    margin: 5px 0;
+}
+
+/* Contact Form */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+button {
+    background: var(--spring-green);
+    color: var(--dark-gray);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--dark-gray);
+    color: var(--spring-green);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--spring-green);
+    color: var(--dark-gray);
+    margin-top: 50px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: var(--dark-gray);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* Resume Link Styles */
+.resume-link {
+    text-align: center; /* Center the link horizontally */
+    margin: 20px 0; /* Add some vertical spacing */
+}
+
+.resume-link a {
+    color: red; /* Make the font red */
+    font-size: 1.5rem; /* Increase the font size */
+    font-weight: bold; /* Optional: Make the text bold */
+    text-decoration: none; /* Remove underline */
+}
+
+.resume-link a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.hobby-img {
+    width: 500px; /* Set the width to something small */
+    height: 300px; /* Portrait height */
+    object-fit: cover; /* Ensures the image fits nicely without distortion */
+    border-radius: 10px; /* Optional - for rounded corners */
+    border: 2px solid var(--spring-green); /* Optional - for a border */
+    margin: 5px;
+}
+
+/* For the NYC gallery specifically */
+.nyc-gallery img {
+    width: 240px;  /* Same width for consistency */
+    height: 320px; /* Same height for portrait style */
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--spring-green);
+}
+
+.hobbies-container {
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 0 auto; /* Centers the content */
+    text-align: center; /* Ensures the text is neatly centered */
+    line-height: 1.5; /* Improves readability */
+}
+
+p {
+    font-size: 1.2rem; /* Increases font size */
+    font-weight: 800; /* Makes it slightly bolder */
+    color: var(--text-color); /* Ensures color consistency */
+    line-height: 1.8; /* Improves readability */
+}
