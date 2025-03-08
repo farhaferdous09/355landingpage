@@ -1,12 +1,24 @@
-// Slideshow Functionality (only works on index.html)
+// Slideshow Functionality
 if (document.querySelector('.slide')) {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
+    const indicators = document.querySelectorAll('.indicator');
 
     function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.style.opacity = i === index ? 1 : 0;
+        // Hide all slides
+        slides.forEach((slide) => {
+            slide.style.opacity = 0;
+            slide.style.transform = 'translateX(100%)'; // Slide out effect
+        });
+
+        // Show the current slide
+        slides[index].style.opacity = 1;
+        slides[index].style.transform = 'translateX(0)'; // Slide in effect
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
         });
     }
 
@@ -15,10 +27,28 @@ if (document.querySelector('.slide')) {
         showSlide(currentSlide);
     }
 
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Add event listeners for buttons
+    document.querySelector('.next').addEventListener('click', nextSlide);
+    document.querySelector('.prev').addEventListener('click', prevSlide);
+
+    // Add event listeners for indicators
+    indicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = i;
+            showSlide(currentSlide);
+        });
+    });
+
     // Show the first slide initially
     showSlide(currentSlide);
 
-    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    // Auto-advance slides (optional)
+    setInterval(nextSlide, 5000); // Change slide every 3 seconds
 }
 
 // Dark Mode Toggle - works everywhere
