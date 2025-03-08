@@ -54,10 +54,25 @@ if (document.querySelector('.slide')) {
 // Dark Mode Toggle - works everywhere
 const darkModeToggle = document.querySelector('.dark-mode-toggle');
 
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDarkMode = document.body.classList.contains('dark-mode');
+// Function to set dark mode
+function setDarkMode(isDarkMode) {
+    document.body.classList.toggle('dark-mode', isDarkMode);
     darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+    localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+}
+
+// Load dark mode preference from localStorage
+const savedDarkMode = localStorage.getItem('darkMode');
+if (savedDarkMode === 'enabled') {
+    setDarkMode(true);
+} else {
+    setDarkMode(false);
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', () => {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    setDarkMode(!isDarkMode);
 });
 
 // cyclic typing effect for the logo at the top of each HTML page
