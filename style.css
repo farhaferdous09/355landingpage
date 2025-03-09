@@ -160,41 +160,74 @@ section {
     text-align: center;
 }
 
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start with 0 opacity (invisible) */
+    }
+    to {
+        opacity: 1; /* End with 1 opacity (fully visible) */
+    }
+}
+
 /* About Me Section */
+.three-d-text {
+    text-shadow: 1px 1px 0 #7bc689, 2px 2px 0 #7bc689, 3px 3px 0 #7bc689;
+    font-size: 2rem;
+    color: #ff6f61;
+}
+
 .about-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items to the top */
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 0 20px; /* Add padding to prevent content from touching the edges */
+}
+
+/* Increase Paragraph Font Size */
+.profile-content p {
+    background: linear-gradient(45deg, #7bc689, #ff6f61);
+    font-size: 1.5rem; /* Adjust this value as needed */
+    line-height: 1.6; /* Optional: Adjust line height for better readability */
 }
 
 .profile-content {
     flex: 1;
-    max-width: 800px;
-    margin: 0 20px;
+    max-width: 100%;
+    margin: 0; 
+    padding: 0 20px;
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     /*border-radius: 50%; */
     object-fit: cover; /* This makes sure the image fills the circle properly */
     margin-bottom: 20px;
     border: 5px solid #7bc689;
+    animation: fadeIn 1s ease-in-out 0.5s; /* Apply the fade-in animation with a delay */
+    animation-fill-mode: backwards; /* Ensure the element stays visible after the animation */
+}
+
+.profile-pic:hover {
+    transform: scale(1.1); /* Slightly enlarge the image on hover */
+    transition: transform 0.3s ease-in-out;
 }
 
 .gif-left, .gif-right {
     flex: 0 0 20%; /* Adjust the width of the GIF containers */
     margin-top: 50px; /* Adjust this value to align GIFs with the profile content */
     position: relative;
+    overflow: hidden;
 }
 
 /* Giphy Embed Wrapper */
 .gif-left iframe, .gif-right iframe {
-    width: 100%; /* Make the iframe fill its container */
-    height: 100%; /* Make the iframe fill its container */
+    width: 80%; /* Make the iframe fill its container */
+    height: 80%; /* Make the iframe fill its container */
+    object-fit: cover;
     border-radius: 10px; /* Optional: Add rounded corners */
     position: absolute; /* Ensure the iframe fills the container */
     top: 0;
@@ -248,7 +281,7 @@ section {
 /* Project Image */
 .project-image {
     width: 100%;
-    height: 200px; /* Fixed height for the image */
+    height: 300px; /* Fixed height for the image */
     object-fit: cover; /* Ensure the image covers the area */
     object-position: center; /* Center the image */
 }
@@ -339,18 +372,6 @@ section {
     text-decoration: underline;
 }
 
-/* Skills List */
-#skills ul {
-    list-style: none;
-    padding: 0;
-    margin: 20px auto;
-    width: fit-content;
-}
-
-#skills li {
-    margin: 5px 0;
-}
-
 /* Contact Form */
 form {
     display: flex;
@@ -405,14 +426,15 @@ footer {
 }
 
 .resume-link a {
-    color: red; /* Make the font red */
-    font-size: 1.5rem; /* Increase the font size */
+    color: rgb(153, 6, 6); /* Make the font red */
+    font-size: 2.5rem; /* Increase the font size */
     font-weight: bold; /* Optional: Make the text bold */
-    text-decoration: none; /* Remove underline */
+    text-decoration: underline; /* Remove underline */
 }
 
 .resume-link a:hover {
     text-decoration: underline; /* Add underline on hover */
+    color: rgb(231, 13, 13);
 }
 
 .hobby-img {
@@ -446,3 +468,145 @@ p {
     color: var(--text-color); /* Ensures color consistency */
     line-height: 1.8; /* Improves readability */
 }
+
+/* Bottom Animations Container */
+.bottom-animations {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Adjust the height as needed */
+    overflow: hidden;
+    margin-bottom: 20px; /* Space above the footer */
+}
+
+/* Animation Containers */
+.animation-left-bottom, .animation-right-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100px; /* Adjust the width of the animation containers */
+    height: 100px; /* Adjust the height of the animation containers */
+}
+
+.animation-left-bottom {
+    left: 0;
+}
+
+.animation-right-bottom {
+    right: 0;
+}
+
+/* Frog Element */
+.frog {
+    width: 200px; /* Adjust the size of the frog */
+    height: 150px;
+    background-image: url('https://media.istockphoto.com/id/1385404682/vector/frog-kawaii.jpg?s=612x612&w=0&k=20&c=A2CQHQhIrNQqTPz-zdqoBmsJhHzjKs9ElYMESQTvBrE='); /* Use a frog SVG or image */
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Left Frog */
+.animation-left-bottom .frog {
+    left: 20%; /* Adjust the position */
+}
+
+/* Right Frog */
+.animation-right-bottom .frog {
+    right: 20%; /* Adjust the position */
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Adjust the bounce height */
+    }
+}
+
+/* Lily Pad */
+.lily-pad {
+    width: 60px;
+    height: 60px;
+    background-image: url('lily.jpg'); /* Use a lily pad SVG or image */
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    animation: float 3s infinite ease-in-out;
+}
+
+/* Float Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Adjust the float height */
+    }
+}
+
+.heartbody {
+    background: #111115;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .heart {
+    font-size: 6em;
+    position: relative;
+  }
+  
+  .heartbeat {
+    position: relative;
+    z-index: 1;
+    animation: beat 2s linear infinite;
+  }
+  
+  .heartecho {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    animation: echo 2s linear infinite;
+  }
+  
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(0.9);
+    }
+    21% {
+      transform: scale(1.1) skew(0.004turn)
+    }
+    28% {
+      transform: scale(1) skew(0.008turn);
+    }
+    35% {
+      transform: scale(1) skew(0)
+    }
+  }
+  
+  @keyframes echo {
+    0% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    14% {
+      opacity: 0.4;
+      transform: scale(0.8);
+    }
+    21% {
+      opacity: 0.4;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(3);
+    }
+  }
